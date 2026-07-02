@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labas House | Premium Clothing Brand</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="./Labas House _ Premium Clothing Brand website_files/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Labas House _ Premium Clothing Brand website_files/css2" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #111111;
+            --accent: #bc9c22;
+            --light: #f9f9f9;
+            --grey: #e5e5e5;
+            --dark-grey: #555555;
+            --whatsapp: #25D366;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --transition: all 0.4s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #ffffff;
+            color: var(--primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- GLOBAL COMPONENTS --- */
+        .section-padding {
+            padding: 80px 10%;
+        }
+
+        .heading-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .heading-container h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .heading-container p {
+            color: var(--dark-grey);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-transparent {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-transparent:hover {
+            background-color: #ffffff;
+            color: var(--primary);
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            transition: var(--transition);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header.scrolled {
+            background-color: #ffffff;
+            padding: 15px 10%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover, header.scrolled .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        header.scrolled .menu-toggle {
+            color: var(--primary);
+        }
+
+        /* --- HERO AUTOMATIC SLIDER --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            text-align: center;
+            color: #ffffff;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease forward 0.3s;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease forward 0.5s;
+        }
+
+        .hero-content .btn {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease forward 0.7s;
+        }
+
+        /* Animation triggering when slide is active */
+        .slide.active .hero-content h1,
+        .slide.active .hero-content p,
+        .slide.active .hero-content .btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- BRAND STORY SECTION --- */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background-color: var(--light);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--dark-grey);
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .about-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .about-img-box {
+            height: 300px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        /* --- VISUAL GALLERY SECTIONS --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay h3 {
+            color: #ffffff;
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-overlay span {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* --- PREMIUM SERVICES SECTION --- */
+        .services-section {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .services-section .heading-container h2 {
+            color: #ffffff;
+        }
+
+        .services-section .heading-container p {
+            color: var(--accent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: #1a1a1a;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid #222;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .service-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER SECTION --- */
+        footer {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            padding: 60px 10% 30px 10%;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .footer-about p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #888;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            color: #fff;
+        }
+
+        .footer-socials a:hover {
+            background-color: var(--accent);
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* --- WHATSAPP FLOATING BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            color: #fff;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 5%;
+            }
+            header {
+                padding: 20px 5%;
+            }
+            header.scrolled {
+                padding: 15px 5%;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                flex-direction: column;
+                gap: 0;
+                display: none;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                color: var(--primary);
+                padding: 20px;
+                border-bottom: 1px solid var(--grey);
+                width: 100%;
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-section {
+                flex-direction: column;
+            }
+            .gallery-grid, .services-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-images {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WHATSAPP FLOATING CHAT BUTTON -->
+    <!-- Replace phone number '1234567890' with your actual brand phone number -->
+    <a href="https://wa.me/1234567890?text=Hi%20Labas%20House!%20I%20am%20interested%20in%20your%20clothing%20collections." class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- HEADER / NAVIGATION -->
+    <header id="navbar" class="">
+        <a href="http://127.0.0.1:5500/index.html#" class="logo">LABAS HOUSE</a>
+        <div class="menu-toggle" id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-list">
+            <li><a href="http://127.0.0.1:5500/index.html#">Home</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#about">Our Story</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#collections">Collections</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#services">Our Services</a></li>
+            <li><a href="http://127.0.0.1:5500/index.html#footer">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- HERO AUTOMATIC IMAGE CAROUSEL SECTION -->
+    <section class="hero">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <!-- Feel free to swap out these source URLs with your real image URLs later -->
+            <div class="slide" style="background: url(&#39;https://i.ibb.co/s9VWsxhL/women-s-suit.jpg" )="" no-repeat="" center="" cover;"="">
+                <div class="hero-content">
+                    <p>Summer Elegance 2026</p>
+                    <h1>Redefining Modern Luxury</h1>
+                    <a href="http://127.0.0.1:5500/index.html#collections" class="btn btn-transparent">Explore Collection</a>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide" style="background: url(&#39;https://i.ibb.co/sd11McNw/Heiryn-Women-s-Fashionable-Commuter-Wrap-Blazer-Jacket.jpg" )="" ')="" no-repeat="" center="" cover;"="">
+                <div class="hero-content">
+                    <p>Handcrafted Essentials</p>
+                    <h1>Timeless Aesthetic &amp; Comfort</h1>
+                    <a href="http://127.0.0.1:5500/index.html#collections" class="btn btn-transparent">Discover More</a>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide active" style="background: url(&#39;https://i.ibb.co/sd0vMkqN/15-Chic-Business-Casual-Outfits-ideas-for-Women.jpg" )="" no-repeat="" center="" cover;"="">
+                <div class="hero-content">
+                    <p>Exclusive Craftsmanship</p>
+                    <h1>The True Art of Haute Couture</h1>
+                    <a href="http://127.0.0.1:5500/index.html#collections" class="btn btn-transparent">Shop New Arrivals</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND STORY SECTION -->
+    <section id="about" class="about-section section-padding">
+        <div class="about-text">
+            <div style="text-align: left;" class="heading-container">
+                <p>Who We Are</p>
+                <h3>Passionate Craftsmanship, Bold Statement</h3>
+            </div>
+            <p>At Labas House, we create wearable contemporary art pieces. Every garment is carefully structuralized with structural focus, luxury fabrics, and timeless design schemas tailored to express internal individuality. </p>
+            <p>We blend legacy tailoring techniques with modern runway designs to cultivate bespoke capsule arrays intended to fit beautifully through multi-seasonal trends.</p>
+            <a href="http://127.0.0.1:5500/index.html#collections" class="btn">View Lookbook</a>
+        </div>
+        <div class="about-images">
+            <div class="about-img-box">
+                <img src="./Labas House _ Premium Clothing Brand website_files/photo-1485968579580-b6d095142e6e" alt="Tailoring Close Up">
+            </div>
+            <div class="about-img-box" style="margin-top: 20px;">
+                <img src="./Labas House _ Premium Clothing Brand website_files/photo-1509631179647-0177331693ae" alt="Model posing">
+            </div>
+        </div>
+    </section>
+
+    <!-- CURATED COLLECTIONS GALLERY SECTION -->
+    <section id="collections" class="section-padding">
+        <div class="heading-container">
+            <p>Curated Luxury</p>
+            <h2>Seasonal Collections</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="./Labas House _ Premium Clothing Brand website_files/download-3.jpg" alt="Prêt-à-Porter Collection">
+                <div class="gallery-overlay">
+                    <h3>Prêt-à-Porter</h3>
+                    <span>Shop Concept</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="./Labas House _ Premium Clothing Brand website_files/1137792293374470087.jpg" alt="Haute Couture Collection">
+                <div class="gallery-overlay">
+                    <h3>Haute Couture</h3>
+                    <span>Custom Orders Only</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="./Labas House _ Premium Clothing Brand website_files/Robe-Lolita-l-gante-gothique-noire-manches-longues-bouffantes-Astrea.jpg" alt="Minimalist Basics Collection">
+                <div class="gallery-overlay">
+                    <h3>The Luxe Basics</h3>
+                    <span>Everyday Apparel</span>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="./Labas House _ Premium Clothing Brand website_files/1004513891897386864.jpg" alt="Accessories Collection">
+                <div class="gallery-overlay">
+                    <h3>Sartorial Accents</h3>
+                    <span>Handcrafted Accents</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREMIUM SERVICES SECTION -->
+    <section id="services" class="services-section section-padding">
+        <div class="heading-container">
+            <p>Our Tailored Craft</p>
+            <h2>Exclusive Services Offered</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-scissors service-icon"></i>
+                <h3>Bespoke Custom Tailoring</h3>
+                <p>Schedule a personal, elite fitting session. We construct master-level custom attire customized dynamically down to your individual metric parameters.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-user-tie service-icon"></i>
+                <h3>Private Wardrobe Styling</h3>
+                <p>Work directly alongside one of our elite creative consultants to curate custom capsule wardrobes perfectly suited for upscale lifestyle requirements.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck service-icon"></i>
+                <h3>Global Concierge Delivery</h3>
+                <p>Every purchase arrives enclosed inside premium temperature-controlled preservation suites with expedited courier protocols globally.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer id="footer">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>LABAS HOUSE</h3>
+                <p>An elite standard in fashion, creating timeless garments intended to empower individual expression with structural prestige and elegant designs.</p>
+                <div class="footer-socials">
+                    <a href="http://127.0.0.1:5500/index.html#"><i class="fab fa-instagram"></i></a>
+                    <a href="http://127.0.0.1:5500/index.html#"><i class="fab fa-pinterest"></i></a>
+                    <a href="http://127.0.0.1:5500/index.html#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Collections</h4>
+                <ul>
+                    <li><a href="http://127.0.0.1:5500/index.html#collections">New Arrivals</a></li>
+                    <li><a href="http://127.0.0.1:5500/index.html#collections">Ready to Wear</a></li>
+                    <li><a href="http://127.0.0.1:5500/index.html#collections">Limited Editions</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="http://127.0.0.1:5500/index.html#services">Custom Tailoring</a></li>
+                    <li><a href="http://127.0.0.1:5500/index.html#services">Image Consulting</a></li>
+                    <li><a href="http://127.0.0.1:5500/index.html#services">VIP Fitting Rooms</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact Info</h4>
+                <ul style="color: #888; font-size: 0.95rem;">
+                    <li><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> 74 Avenue de Luxe, Paris</li>
+                    <li><i class="fas fa-phone-alt" style="color: var(--accent); margin-right: 10px;"></i> +1 (234) 567-890</li>
+                    <li><i class="fas fa-envelope" style="color: var(--accent); margin-right: 10px;"></i> contact@labashouse.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Labas House. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR CAROUSEL & NAVIGATION -->
+    <script>
+        // --- MOBILE MENU INTERACTION ---
+        const menuIcon = document.getElementById('menu-icon');
+        const navList = document.getElementById('nav-list');
+
+        menuIcon.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            // Toggle hamburger icon animation/change
+            const icon = menuIcon.querySelector('i');
+            if(navList.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu automatically on mobile when a link item is selected
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                menuIcon.querySelector('i').classList.add('fa-bars');
+                menuIcon.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // --- STICKY NAVBAR SCROLL EVENT ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- AUTOMATIC HERO IMAGE SLIDER LOOP ---
+        const slides = document.querySelectorAll('.slide');
+        let currentSlideIndex = 0;
+        const slideIntervalTime = 5000; // Time frame in milliseconds (5 seconds per slide)
+
+        function showNextSlide() {
+            // Remove active class from present slide
+            slides[currentSlideIndex].classList.remove('active');
+            
+            // Advance index loop cleanly
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            
+            // Assign active class framework to next indexed element
+            slides[currentSlideIndex].classList.add('active');
+        }
+
+        // Initialize slide loop timer initialization
+        setInterval(showNextSlide, slideIntervalTime);
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
